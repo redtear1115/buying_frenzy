@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a demo project for Technical Assessment from glints
 
-Things you may want to cover:
+## Requirements
+[Buying Frenzy](https://gist.github.com/seahyc/97b154ce5bfd4f2b6e3a3a99a7b93f69)
 
-* Ruby version
+## Model
+### Restaurant
+* has_many :dishes
+* has_many :opening_hours
+* name
+* cash_balance
 
-* System dependencies
+### Dish
+* belongs_to :restaurant
+* name
+* price
 
-* Configuration
+### OpeningHour
+* belongs_to :restaurant
+* day_of_week
+* opened_at
+* closed_at
+* opening_hour
 
-* Database creation
+### User
+* has_many :purchase_histories
+* name
+* cash_balance
 
-* Database initialization
+### PurchaseHistory
+* belongs_to :user
+* belongs_to :dish
+* belongs_to :restaurant
+* transaction_amount
+* transaction_date
 
-* How to run the test suite
+## API Document
 
-* Services (job queues, cache servers, search engines, etc.)
+## RSpec Result
 
-* Deployment instructions
-
-* ...
+## Coverage
