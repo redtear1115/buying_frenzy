@@ -20,19 +20,13 @@ class PurchaseHistory < ApplicationRecord
   end
 
   def self.most_popular(mode)
-    case mode
+    phs = case mode
     when 'amount'
-      phs = self.select('restaurant_id, SUM(transaction_amount) as score')
-        .group(:restaurant_id)
-        .order('score desc')
-        .limit(1)
+      self.select('restaurant_id, SUM(transaction_amount) as score')
     when 'count'
-      phs = self.select('restaurant_id, count(id) as score')
-        .group(:restaurant_id)
-        .order('score desc')
-        .limit(1)
+      self.select('restaurant_id, count(id) as score')
     end
-    ph = phs.first
+    ph = phs.group(:restaurant_id).order('score desc').limit(1).first
     {
       restaurant_id: ph.restaurant_id,
       restaurant_name: ph.restaurant.name,

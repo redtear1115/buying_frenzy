@@ -32,7 +32,8 @@ end
 
 puts 'importing users_with_purchase_history.json ...'
 data = JSON.parse(File.read('./db/raw/users_with_purchase_history.json'))
-data.take(10).each do |obj|
+data = data.take(10) if Rails.env.test?
+data.each do |obj|
   user = User.create(id: obj['id'], name: obj['name'], cash_balance: obj['cashBalance'])
   obj['purchaseHistory'].each do |history|
     rst = Restaurant.find_by(name: history['restaurantName'])
