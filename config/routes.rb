@@ -9,7 +9,8 @@ Rails.application.routes.draw do
         get 'summary'
       end
 
-      resources :users, only: [:update] do
+      resources :users, only: [:update]
+      namespace :users do
         post 'order'
       end
 
