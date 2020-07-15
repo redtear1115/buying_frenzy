@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
       resources :restaurants, only: [:update]
       namespace :restaurants do
-        get 'open'
+        get 'open_at'
+        get 'open_on'
+        get 'opened'
         get 'filter'
         get 'search'
       end
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
       resources :dishes, only: [:update]
       namespace :dishes do
         get 'filter'
+        get 'search'
       end
     end
   end
