@@ -47,6 +47,17 @@ class Api::V1::RestaurantsController < Api::ApplicationController
     ok_response(Restaurant.where(id: count_by_restaurant_id.keys))
   end
 
+  def search
+    case params[:for]
+    when 'restaurants'
+      ok_response(Restaurant.search(params[:terms]))
+    when 'dishes'
+      ok_response(Dish.search(params[:terms]))
+    else
+      error_response('invalid for value') && return
+    end
+  end
+
   private
 
   def setup_mode

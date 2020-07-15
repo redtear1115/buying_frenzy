@@ -6,6 +6,7 @@ RSpec.describe Api::V1::RestaurantsController do
   before(:each) do
     @now = Time.parse('2020-07-15 14:30:00 UTC')
   end
+
   # List all restaurants that are open at a certain datetime
   describe 'GET open_at' do
     it 'should be good' do
@@ -60,11 +61,38 @@ RSpec.describe Api::V1::RestaurantsController do
       expect(data.count).to eq(261)
     end
   end
+
   # Search for restaurants or dishes by name, ranked by relevance to search term
   describe 'GET search' do
-    it 'should be good' do
+    it 'should be good for restaurants' do
+      @restaurant = Restaurant.first
+      params = {
+        terms: 'sushi,grill,japanese,bar',
+        for: 'restaurants'
+      }
+      get(:search, params: params)
+      data = JSON.parse(response.body)['data']
+      expect(data.first['id']).to eq(2197)
+      expect(data.first['name']).to eq('iFish Japanese Grill & Sushi Bar')
+      expect(data.last['id']).to eq(6)
+      expect(data.last['name']).to eq('12th Ave. Grill')
+    end
+
+    it 'should be good for dishes' do
+      @restaurant = Restaurant.first
+      params = {
+        terms: 'duck,grill,London,fillet',
+        for: 'dishes'
+      }
+      get(:search, params: params)
+      data = JSON.parse(response.body)['data']
+      expect(data.first['id']).to eq(14828)
+      expect(data.first['name']).to eq('Fan of Grill Duck Fillet')
+      expect(data.last['id']).to eq(36)
+      expect(data.last['name']).to eq('Fillet of Sole')
     end
   end
+  
   # Edit restaurant name
   describe 'PUT restaurants' do
     it 'should be good' do

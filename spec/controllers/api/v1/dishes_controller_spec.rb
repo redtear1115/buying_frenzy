@@ -11,8 +11,8 @@ RSpec.describe Api::V1::DishesController do
         price_above: 10,
         price_below: 20,
       }
-      get('filter', params: params)
-      data = JSON.parse(response.body)['data']
+      get(:filter, params: params)
+      data = JSON.parse(response.body)['data']        
       expect(data.first['id']).to eq(494)
       expect(data.first['price']).to eq(10.0)
     end
@@ -23,7 +23,7 @@ RSpec.describe Api::V1::DishesController do
         price_above: 10,
         price_below: 20,
       }
-      get('filter', params: params)
+      get(:filter, params: params)
       data = JSON.parse(response.body)['data']
       expect(data.first['id']).to eq(5134)
       expect(data.first['name']).to eq("")
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::DishesController do
         price_above: 10,
         price_below: 20,
       }
-      get('filter', params: params)
+      get(:filter, params: params)
       data = JSON.parse(response.body)['data']
       expect(data.first['id']).to eq(2297)
       expect(data.first['price']).to eq(10.0)
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::DishesController do
         price_above: 10,
         price_below: 20,
       }
-      get('filter', params: params)
+      get(:filter, params: params)
       data = JSON.parse(response.body)['data']
       expect(data.first['id']).to eq(1025)
       expect(data.first['price']).to eq(20.0)
@@ -61,7 +61,7 @@ RSpec.describe Api::V1::DishesController do
         price_above: 10,
         price_below: 20,
       }
-      get('filter', params: params)
+      get(:filter, params: params)
       data = JSON.parse(response.body)['data']
       expect(data.first['id']).to eq(17977)
       expect(data.first['price']).to eq(10.0)

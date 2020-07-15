@@ -8,7 +8,10 @@
 
 puts 'importing restaurant_with_menu.json ...'
 data = JSON.parse(File.read('./db/raw/restaurant_with_menu.json'))
-data.each do |obj|
+data_count = data.count
+puts "creating Restaurant & Dish & OpeningHour (#{data_count} records) ..."
+data.each_with_index do |obj, index|
+  puts "  #{index}/#{data_count}" if index % 1000 == 0
   rst = Restaurant.create(name: obj['restaurantName'], cash_balance: obj['cashBalance'])
   obj['menu'].each do |dish|
     rst.dishes.create(name: dish['dishName'], price: dish['price'])
@@ -33,7 +36,10 @@ end
 puts 'importing users_with_purchase_history.json ...'
 data = JSON.parse(File.read('./db/raw/users_with_purchase_history.json'))
 data = data.take(10) if Rails.env.test?
-data.each do |obj|
+data_count = data.count
+puts "creating User & PurchaseHistory (#{data_count} records) ..."
+data.each_with_index do |obj, index|
+  puts "  #{index}/#{data_count}" if index % 1000 == 0
   user = User.create(id: obj['id'], name: obj['name'], cash_balance: obj['cashBalance'])
   obj['purchaseHistory'].each do |history|
     rst = Restaurant.find_by(name: history['restaurantName'])

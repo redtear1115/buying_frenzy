@@ -25,6 +25,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# tags tool
+gem 'acts-as-taggable-on', '~> 6.0'
+
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -54,7 +58,9 @@ group :test do
   gem 'webdrivers'
   # RSpec meta-gem that depends on the other components
   gem 'rspec'
-  gem 'rspec-rails'  
+  gem 'rspec-rails'
+  # Code coverage for Ruby
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -3,7 +3,7 @@ class Api::V1::DishesController < Api::ApplicationController
     from = params[:price_above].to_f
     to = params[:price_below].to_f || 999999
     error_response('please enter valid price range') && return if from >= to
-    dishes = Dish.where(price: from..to).order(order_conditions)
+    dishes = Dish.where(price: from..to).order(order_conditions).limit(100)
     ok_response(dishes)
   end
 
