@@ -11,7 +11,7 @@ data = JSON.parse(File.read('./db/raw/restaurant_with_menu.json'))
 data_count = data.count
 puts "creating Restaurant & Dish & OpeningHour (#{data_count} records) ..."
 data.each_with_index do |obj, index|
-  puts "  #{index}/#{data_count}" if index % 1000 == 0
+  puts "  #{index}/#{data_count}" if index % 100 == 0
   rst = Restaurant.create(name: obj['restaurantName'], cash_balance: obj['cashBalance'])
   obj['menu'].each do |dish|
     rst.dishes.create(name: dish['dishName'], price: dish['price'])
@@ -26,9 +26,9 @@ data.each_with_index do |obj, index|
     closed_at = Time.parse("#{closed_time} #{closed_apm} UTC")
     closed_at = closed_at + 1.day if closed_at <= opened_at
 
-    ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'].each_with_index do |day_of_week|
+    rst.opening_hours.day_of_weeks.each do |day_of_week, value|
       next if opening_of_day.exclude?(day_of_week)
-      rst.opening_hours.create(day_of_week: day_of_week, opened_at: opened_at, closed_at: closed_at)
+      rst.opening_hours.create(day_of_week: value, opened_at: opened_at, closed_at: closed_at)
     end
   end
 end
@@ -39,7 +39,7 @@ data = data.take(10) if Rails.env.test?
 data_count = data.count
 puts "creating User & PurchaseHistory (#{data_count} records) ..."
 data.each_with_index do |obj, index|
-  puts "  #{index}/#{data_count}" if index % 1000 == 0
+  puts "  #{index}/#{data_count}" if index % 100 == 0
   user = User.create(id: obj['id'], name: obj['name'], cash_balance: obj['cashBalance'])
   obj['purchaseHistory'].each do |history|
     rst = Restaurant.find_by(name: history['restaurantName'])

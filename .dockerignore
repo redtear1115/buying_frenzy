@@ -1,0 +1,20 @@
+.git
+.gitignore
+.dockerignore
+.bundle
+
+# Ignore all log files, temp files and uploaded files
+/log/*
+!/log/.keep
+
+/tmp/*
+!/tmp/.keep
+
+/storage/*
+!/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Ignore coverage result
+coverage
