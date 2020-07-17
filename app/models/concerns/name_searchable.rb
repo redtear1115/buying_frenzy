@@ -17,9 +17,9 @@ module NameSearchable
   private
 
   def setup_search_terms
-    search_term_list = ActsAsTaggableOn::TagList.new
+    self.search_term_list = ActsAsTaggableOn::TagList.new
     name.gsub(/[^\w\s]/, ' ').split(' ').each do |term|
-      search_term_list.add(term) if term.size > 1
+      self.search_term_list.add(term) if term.size > 1
     end
   end
 end

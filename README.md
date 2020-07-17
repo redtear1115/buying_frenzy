@@ -6,10 +6,10 @@ This is a demo project for Technical Assessment from glints
 [Buying Frenzy](https://gist.github.com/seahyc/97b154ce5bfd4f2b6e3a3a99a7b93f69)
 
 ## Demo Site
-[Heroku](https://)
+[Heroku](https://still-depths-44807.herokuapp.com/)
 
 ## API Document
-[Postman](https://)
+[Postman](https://github.com/redtear1115/buying_frenzy/blob/master/buying_frenzy.json)
 
 ## RSpec Result
 * Api::V1::DishesController

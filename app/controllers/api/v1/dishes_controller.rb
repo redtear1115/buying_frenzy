@@ -8,7 +8,7 @@ class Api::V1::DishesController < Api::ApplicationController
   end
 
   def update
-    dish = Dish.find_by(params[:id])
+    dish = Dish.find_by(id: params[:id])
     error_response('dish not existed') && return if dish.nil?
     dish.name = params[:name]
     dish.price = params[:price].to_f

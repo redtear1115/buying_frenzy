@@ -2,7 +2,7 @@ class Api::V1::RestaurantsController < Api::ApplicationController
   before_action :setup_mode
 
   def update
-    restaurant = Restaurant.find_by(params[:id])
+    restaurant = Restaurant.find_by(id: params[:id])
     error_response('restaurant not existed') && return if restaurant.nil?
     restaurant.name = params[:name]
     restaurant.save!
