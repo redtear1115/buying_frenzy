@@ -22,9 +22,6 @@ RUN bundle install
 # over to the working directory.
 COPY . .
 
-# unmark following line if you don't want to cp db to image
-# RUN rm -f db/*.sqlite3
-
 # expose port
 EXPOSE 3000
 

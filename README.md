@@ -8,6 +8,12 @@ This is a demo project for Technical Assessment from glints
 ## Demo Site
 [Heroku](https://still-depths-44807.herokuapp.com/)
 
+## Setup Database
+* rake db:create
+* rake db:migrate
+* rake data_import:restaurant_with_menu[PATH_TO_YOUR_FILE]
+* rake data_import:users_with_purchase_history[PATH_TO_YOUR_FILE]
+
 ## API Document
 [Postman](https://github.com/redtear1115/buying_frenzy/blob/master/buying_frenzy.json)
 
