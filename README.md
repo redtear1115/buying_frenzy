@@ -23,7 +23,7 @@ This is a demo project for Technical Assessment from glints
     * should be sorted by price
     * should be sorted by name
     * should be sorted by price, name
-    * should be sorted by price desending and name ascending
+    * should be sorted by price descending and name ascending
     * should be sorted by price ascending and name descending
   * PUT dishes
     * should be good

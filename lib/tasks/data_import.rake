@@ -33,6 +33,7 @@ namespace :data_import do
   task :users_with_purchase_history, [:file_path] => :environment do |_t, args|
     puts 'importing users_with_purchase_history.json ...'
     data = JSON.parse(File.read(args[:file_path]))
+    data = data.take(10) if Rails.env.test?
     data_count = data.count
     puts "creating User & PurchaseHistory (#{data_count} records) ..."
     data.each_with_index do |obj, index|
